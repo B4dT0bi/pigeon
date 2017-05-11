@@ -218,7 +218,7 @@ public:
         char fen[MAX_FEN_LENGTH];
         FEN::PositionToString( pos, fen );
 
-        printf( fen );
+        printf( "%s", fen );
     }
                                       
 
@@ -227,7 +227,7 @@ public:
         char movetext[MAX_MOVETEXT];
         FEN::MoveSpecToString( spec, movetext );
 
-        printf( movetext );
+        printf( "%s", movetext );
     }
 
 
@@ -236,7 +236,7 @@ public:
         for( int i = 0; i < moves.mCount; i++ )
         {
             if( i > 0 )
-                printf( " " );
+                printf( "%s", " " );
 
             FEN::PrintMoveSpec( moves.mMove[i] );
         }

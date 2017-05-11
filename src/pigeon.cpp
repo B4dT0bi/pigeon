@@ -11,6 +11,9 @@
 #include "search.h"
 
 #include <stdio.h>
+#ifdef __ANDROID__
+#include <stdlib.h>
+#endif
 #include <ctype.h>
 #include <time.h>
 #include <math.h>

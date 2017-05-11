@@ -58,8 +58,10 @@
     #include <inttypes.h>
     #include <pthread.h>
     #include <semaphore.h>
+#ifndef __ANDROID__
     #include <emmintrin.h>
     #include <cpuid.h>
+#endif
     #include <string.h>
 
     #pragma GCC diagnostic ignored "-Wunknown-pragmas"
@@ -196,6 +198,7 @@ namespace Pigeon
 
     INLINE PDECL bool PlatCheckCpuFlag( int leaf, int idxWord, int idxBit )
     {
+    #ifndef __ANDROID__
     #if PIGEON_MSVC
         int info[4] = { 0 };
         __cpuid( info, leaf );
@@ -206,14 +209,21 @@ namespace Pigeon
     #endif
 
         return( (info[idxWord] & (1 << idxBit)) != 0 );
+    #else
+        return( false );
+    #endif
     }
 
     INLINE PDECL bool PlatDetectPopcnt()
     {
+    #ifndef __ANDROID__
     #if PIGEON_MSVC
         return( PlatCheckCpuFlag( 1, 2, 23 ) );
     #elif PIGEON_GCC
         return( __builtin_cpu_supports( "popcnt" ) );
+    #endif
+    #else
+        return ( false );
     #endif
     }
 

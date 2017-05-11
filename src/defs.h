@@ -76,7 +76,11 @@ const PDECL int       PIGEON_VER_MAJOR    = 1;
 const PDECL int       PIGEON_VER_MINOR    = 5;
 const PDECL int       PIGEON_VER_PATCH    = 1;
          
+#ifndef __ANDROID__
 const PDECL int       TT_MEGS_DEFAULT     = 512;
+#else
+const PDECL int       TT_MEGS_DEFAULT     = 16;
+#endif
 const PDECL int       TT_SAMPLE_SIZE      = 128;
 const PDECL int       MAX_SEARCH_DEPTH    = 64;
 const PDECL int       METRICS_DEPTH       = 64;
